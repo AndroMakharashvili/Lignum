@@ -274,67 +274,56 @@
 
     <!-- საკონტაქტო ფორმა (Formspree) -->
     <form
-      id="contact-form"
-      action="https://formspree.io/f/xpwzeopv"
-      method="POST"
-      class="contact-form reveal"
+  id="contact-form"
+  action="https://formspree.io/f/xpwzeopv"
+  method="POST"
+  class="contact-form reveal"
+>
+  <div class="form-group">
+    <label class="form-label" for="name">სახელი</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      class="form-input"
+      placeholder="თქვენი სახელი"
+      required
     >
-      <!-- თქვენი Formspree endpoint-ი:
-           შეიქმენით ანგარიში formspree.io-ზე და შეცვალეთ
-           action-ის URL თქვენი ფორმის endpoint-ით -->
+  </div>
 
-      <div class="form-group">
-        <label class="form-label" for="name">სახელი</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          class="form-input"
-          placeholder="თქვენი სახელი"
-          required
-        >
-      </div>
+  <div class="form-group">
+    <label class="form-label" for="email">იმეილი</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="form-input"
+      placeholder="თქვენი იმეილი"
+      required
+    >
+  </div>
 
-      <div class="form-group">
-        <label class="form-label" for="email">იმეილი</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          class="form-input"
-          placeholder="your@email.com"
-          required
-        >
-      </div>
+  <div class="form-group">
+    <label class="form-label" for="message">შეტყობინება</label>
+    <textarea
+      id="message"
+      name="message"
+      class="form-textarea"
+      placeholder="გვიამბეთ თქვენი იდეის შესახებ..."
+      required
+    ></textarea>
+  </div>
 
-      <div class="form-group">
-        <label class="form-label" for="message">შეტყობინება</label>
-        <textarea
-          id="message"
-          name="message"
-          class="form-textarea"
-          placeholder="გვიამბეთ თქვენი იდეის შესახებ..."
-          required
-        ></textarea>
-      </div>
+  <input type="hidden" name="_subject" value="ახალი შეტყობინება Lignum-ის საიტიდან">
 
-      <!-- Formspree: გამგზავნის ინფო -->
-      <input type="hidden" name="_subject" value="ახალი შეკვეთა — Lignum">
-      <input type="hidden" name="_replyto" value="">
-
-      <button type="submit" class="btn-submit">
-        გაგზავნა
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="22" y1="2" x2="11" y2="13"/>
-          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
-        </svg>
-      </button>
-
-      <!-- წარმატების შეტყობინება -->
-      <div id="form-success" class="form-success">
-        ✓ შეტყობინება წარმატებით გაიგზავნა! გიპასუხებ 24 საათის განმავლობაში.
-      </div>
-    </form>
+  <button type="submit" class="btn-submit">
+    გაგზავნა
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="22" y1="2" x2="11" y2="13"/>
+      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+    </svg>
+  </button>
+</form>
   </section>
 
   <!-- ============================================================
