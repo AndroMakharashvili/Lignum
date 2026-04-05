@@ -276,46 +276,46 @@ function observeReveal() {
 }
 
 /* ============================================
-   9. Formspree კონტაქტის ფორმა
-   ============================================ */
-function initContactForm() {
-  const form = document.getElementById("contact-form");
-  if (!form) return;
+//    9. Formspree კონტაქტის ფორმა
+//    ============================================ */
+// function initContactForm() {
+//   const form = document.getElementById("contact-form");
+//   if (!form) return;
 
-  form.addEventListener("submit", async function (e) {
-    e.preventDefault();
+//   form.addEventListener("submit", async function (e) {
+//     e.preventDefault();
 
-    const btn         = form.querySelector(".btn-submit");
-    const successMsg  = document.getElementById("form-success");
+//     const btn         = form.querySelector(".btn-submit");
+//     const successMsg  = document.getElementById("form-success");
 
-    // ღილაკის ტემპ. გათიშვა
-    btn.disabled = true;
-    btn.textContent = "იგზავნება...";
+//     // ღილაკის ტემპ. გათიშვა
+//     btn.disabled = true;
+//     btn.textContent = "იგზავნება...";
 
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" },
-      });
+//     try {
+//       const response = await fetch(form.action, {
+//         method: "POST",
+//         body: new FormData(form),
+//         headers: { Accept: "application/json" },
+//       });
 
-      if (response.ok) {
-        form.reset();
-        if (successMsg) {
-          successMsg.style.display = "block";
-          setTimeout(() => (successMsg.style.display = "none"), 5000);
-        }
-      } else {
-        alert("შეცდომა! გთხოვთ სცადოთ ხელახლა.");
-      }
-    } catch {
-      alert("კავშირის შეცდომა. გთხოვთ სცადოთ მოგვიანებით.");
-    } finally {
-      btn.disabled = false;
-      btn.innerHTML = `გაგზავნა <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
-    }
-  });
-}
+//       if (response.ok) {
+//         form.reset();
+//         if (successMsg) {
+//           successMsg.style.display = "block";
+//           setTimeout(() => (successMsg.style.display = "none"), 5000);
+//         }
+//       } else {
+//         alert("შეცდომა! გთხოვთ სცადოთ ხელახლა.");
+//       }
+//     } catch {
+//       alert("კავშირის შეცდომა. გთხოვთ სცადოთ მოგვიანებით.");
+//     } finally {
+//       btn.disabled = false;
+//       btn.innerHTML = `გაგზავნა <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>`;
+//     }
+//   });
+// }
 
 /* ============================================
    10. ინიციალიზაცია — DOM მზადობის შემდეგ
