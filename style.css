@@ -151,10 +151,10 @@ nav {
   font-size: 0.82rem;
   font-weight: 300;
   background: var(--cream);
-  border: 1.5px solid var(--cream-dark);
+  border: 1.5px solid var(--walnut-mid);
   border-radius: 50px;
   padding: 0.45rem 1rem 0.45rem 2.5rem;
-  width: 200px;
+  width: 250px;
   color: var(--text-dark);
   transition: border-color var(--transition), box-shadow var(--transition), width var(--transition);
   outline: none;
@@ -332,16 +332,26 @@ nav {
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
+.about-img-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .about-img-secondary {
   position: absolute;
   bottom: 0; right: 0;
-  width: 52%;
-  height: 50%;
+  width: 45%;
+  height: 70%;
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 4px solid var(--warm-white);
   box-shadow: 0 12px 40px var(--shadow-md);
+}
+.about-img-secondary img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .section-label {
@@ -438,19 +448,42 @@ nav {
 .link-arrow:hover { gap: 0.7rem; color: var(--walnut); }
 .link-arrow svg { width: 14px; height: 14px; }
 
+/*
+  FEATURED GRID — ავტომატური განლაგება
+  ------------------------------------------------
+  პრინციპი:
+  • პირველი ბარათი (.feat-card:first-child) ყოველთვის
+    დიდია — 2 სვეტი × 2 რიგი
+  • დანარჩენი ბარათები ეწყობა 3-სვეტიან ბადეში, 1 ან 2
+    რიგზე — ბარათების რაოდენობის მიხედვით
+  • ახალი ბარათის დამატება: უბრალოდ დაამატეთ ახალი
+    .feat-card div — grid ავტომატურად გადაეწყობა
+  ------------------------------------------------
+*/
 .featured-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  grid-template-rows: 280px 280px;
+  grid-template-columns: 2fr 1fr 1fr 1fr;   /* პირველი სვეტი ორჯერ განიერი */
+  grid-auto-rows: 300px;                 /* ყველა რიგი 300px */
   gap: 1.2rem;
 }
 
-.feat-card { border-radius: var(--radius-md); overflow: hidden; position: relative; cursor: pointer; }
-.feat-card:first-child { grid-row: 1 / 3; }
+/* პირველი ბარათი — დიდი, 2 რიგს მოიცავს */
+.feat-card:first-child {
+  grid-row: 1 / span 2;   /* ყოველთვის 2 რიგი, რაც არ უნდა ემატებოდეს */
+}
+
+.feat-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  background: var(--cream-dark); /* placeholder ფერი სანამ სურათი ჩაიტვირთება */
+}
 
 .feat-card img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   transition: transform 0.5s ease;
 }
 
@@ -483,6 +516,7 @@ nav {
   color: rgba(255,255,255,0.75);
   margin-top: 0.3rem;
 }
+
 
 /* ============================================
    PROCESS SECTION (index.html)
