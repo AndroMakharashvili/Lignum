@@ -81,10 +81,8 @@ header.scrolled {
 }
 
 .logo-icon {
-  width: 50px;
-  height: 50px;
-  
-  border-radius: var(--radius-sm);
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -151,10 +149,10 @@ nav {
   font-size: 0.82rem;
   font-weight: 300;
   background: var(--cream);
-  border: 1.5px solid var(--walnut-mid);
+  border: 1.5px solid var(--cream-dark);
   border-radius: 50px;
   padding: 0.45rem 1rem 0.45rem 2.5rem;
-  width: 250px;
+  width: 200px;
   color: var(--text-dark);
   transition: border-color var(--transition), box-shadow var(--transition), width var(--transition);
   outline: none;
@@ -333,9 +331,9 @@ nav {
   overflow: hidden;
 }
 .about-img-main img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about-img-secondary {
@@ -349,9 +347,9 @@ nav {
   box-shadow: 0 12px 40px var(--shadow-md);
 }
 .about-img-secondary img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .section-label {
@@ -462,7 +460,7 @@ nav {
 */
 .featured-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;   /* პირველი სვეტი ორჯერ განიერი */
+  grid-template-columns: 2fr 1fr 1fr;   /* პირველი სვეტი ორჯერ განიერი */
   grid-auto-rows: 300px;                 /* ყველა რიგი 300px */
   gap: 1.2rem;
 }
@@ -516,7 +514,6 @@ nav {
   color: rgba(255,255,255,0.75);
   margin-top: 0.3rem;
 }
-
 
 /* ============================================
    PROCESS SECTION (index.html)
@@ -844,7 +841,6 @@ nav {
 .work-hover {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(42,22,10,0.82) 0%, rgba(42,22,10,0.2) 60%, transparent 100%);
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -856,26 +852,29 @@ nav {
 .work-card:hover .work-hover { opacity: 1; }
 
 .work-hover-tag {
-  font-size: 0.7rem;
+  display: none;
+  /* font-size: 0.7rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--oak-light);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.3rem; */
 }
 
 .work-hover-title {
-  font-family: var(--font-display);
+  display: none;
+  /* font-family: var(--font-display);
   font-size: 1.3rem;
   color: #fff;
   font-weight: 400;
-  line-height: 1.2;
+  line-height: 1.2; */
 }
 
 .work-hover-desc {
-  font-size: 0.8rem;
+  display: none;
+  /* font-size: 0.8rem;
   color: rgba(255,255,255,0.72);
   margin-top: 0.4rem;
-  line-height: 1.5;
+  line-height: 1.5; */
 }
 
 .work-card-body {
@@ -981,6 +980,137 @@ footer {
 .footer-links a:hover { color: var(--cream); }
 
 /* ============================================
+   ZOOM POPUP — ბარათზე კლიკისას სურათის გადიდება
+   ============================================ */
+
+/* მსუბუქი ნახევრად-გამჭვირვალე ფონი */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(28, 16, 8, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* popup კონტეინერი — არა სრული ეკრანი, კომფორტული ზომა */
+.lightbox-inner {
+  position: relative;
+  width: min(680px, 90vw);       /* მაქს. 680px */
+  background: var(--warm-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(28, 16, 8, 0.45);
+  transform: scale(0.88) translateY(20px);
+  transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+
+.lightbox.open .lightbox-inner {
+  transform: scale(1) translateY(0);
+}
+
+/* სურათი popup-ში */
+.lightbox-img {
+  width: 100%;
+  max-height: 68vh;
+  object-fit: contain;
+  display: block;
+  background: var(--cream-dark);
+}
+
+/* სათაური და აღწერა popup-ის ქვეშ */
+.lightbox-info {
+  padding: 1rem 1.4rem 1.3rem;
+  border-top: 1px solid var(--cream-dark);
+}
+
+.lightbox-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--walnut);
+}
+
+.lightbox-desc {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+
+/* X — დახურვის ღილაკი */
+.lightbox-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(253,250,246,0.9);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--walnut);
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+.lightbox-close:hover {
+  background: var(--cream-dark);
+  transform: rotate(90deg) scale(1.1);
+}
+
+.lightbox-close svg { width: 16px; height: 16px; }
+
+/* ← → ნავიგაციის ღილაკები — popup-ის ორ მხარეს */
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(253,250,246,0.88);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--walnut);
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+.lightbox-prev { left: 0.7rem; }
+.lightbox-next { right: 0.7rem; }
+
+.lightbox-prev:hover { background: var(--cream); transform: translateY(-50%) scale(1.08); }
+.lightbox-next:hover { background: var(--cream); transform: translateY(-50%) scale(1.08); }
+
+.lightbox-prev svg,
+.lightbox-next svg { width: 18px; height: 18px; }
+
+/* კლიკური ბარათი */
+.work-card { cursor: pointer; }
+
+/* ============================================
    SCROLL ANIMATIONS
    ============================================ */
 .reveal {
@@ -1026,8 +1156,14 @@ footer {
   .about { padding: 5rem 2.5rem; gap: 3rem; }
   .about-images { height: 360px; }
   .featured { padding: 5rem 2.5rem; }
-  .featured-grid { grid-template-columns: 1fr 1fr; }
-  .featured-grid .feat-card:first-child { grid-column: 1 / -1; grid-row: auto; height: 280px; }
+  .featured-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 240px;
+  }
+  .featured-grid .feat-card:first-child {
+    grid-column: 1 / -1;
+    grid-row: span 1;
+  }
   .process { padding: 5rem 2.5rem; }
   .process-grid { grid-template-columns: 1fr 1fr; }
   .contact { padding: 5rem 2.5rem; gap: 3rem; }
@@ -1048,3 +1184,111 @@ footer {
   .gallery-section { padding: 2.5rem 1.5rem; }
   footer { padding: 2rem 1.5rem; }
 }
+
+/* ============================================
+   LIGHTBOX / ZOOM POPUP
+   ============================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(28, 16, 8, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+.lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox-inner {
+  position: relative;
+  width: min(680px, 90vw);
+  background: var(--warm-white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(28, 16, 8, 0.45);
+  transform: scale(0.88) translateY(20px);
+  transition: transform 0.3s cubic-bezier(0.34, 1.3, 0.64, 1);
+}
+.lightbox.open .lightbox-inner {
+  transform: scale(1) translateY(0);
+}
+.lightbox-img {
+  width: 100%;
+  max-height: 68vh;
+  object-fit: contain;
+  display: block;
+  background: var(--cream-dark);
+}
+.lightbox-info {
+  padding: 1rem 1.4rem 1.3rem;
+  border-top: 1px solid var(--cream-dark);
+}
+.lightbox-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--walnut);
+}
+.lightbox-desc {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  margin-top: 0.2rem;
+  line-height: 1.5;
+}
+.lightbox-close {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(253,250,246,0.9);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--walnut);
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+.lightbox-close:hover {
+  background: var(--cream-dark);
+  transform: rotate(90deg) scale(1.1);
+}
+.lightbox-close svg { width: 16px; height: 16px; }
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 38%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(253,250,246,0.88);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--walnut);
+  transition: background var(--transition), transform var(--transition);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+.lightbox-prev { left: 0.7rem; }
+.lightbox-next { right: 0.7rem; }
+.lightbox-prev:hover { background: var(--cream); transform: translateY(-50%) scale(1.08); }
+.lightbox-next:hover { background: var(--cream); transform: translateY(-50%) scale(1.08); }
+.lightbox-prev svg,
+.lightbox-next svg { width: 18px; height: 18px; }
+.work-card { cursor: pointer; }
