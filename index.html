@@ -5,12 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Lignum — ხეზე კვეთის და Woodcraft სახელოსნო. ხელნაკეთი ხის ნამუშევრები, რომლებიც ბუნების სილამაზეს და ადამიანის შემოქმედებითობას აერთიანებს.">
   <title>Lignum</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#8B6914">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="apple-mobile-web-app-title" content="Lignum">
-  <link rel="apple-touch-icon" href="images/icon-192.png">
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="images/head-icon.png">
 </head>
@@ -386,14 +380,5 @@
   </footer>
 
   <script src="script.js"></script>
-  <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(reg => console.log('SW registered:', reg.scope))
-        .catch(err => console.log('SW error:', err));
-    });
-  }
-</script>
 </body>
 </html>
